@@ -9,6 +9,7 @@ import { useContext } from 'react';
 
 const url = "http://127.0.0.1:8000/";
 function StoreToken(res, login, setLogin, navigate){
+        setLogin(true); 
         localStorage.setItem('access',res.data.access);    
         localStorage.setItem('refresh',res.data.refresh);
         useEffect(() => {
@@ -44,8 +45,8 @@ const Login = () => {
             username : username,
             password : password
         }).then(res =>{
-            setLogin(true); 
-            console.log("returned data", res.data);
+            
+            console.log("returned data here", res.data);
             res.status === 200? StoreToken(res,login, setLogin, navigate):alert("authentication failed");
         })
     }
