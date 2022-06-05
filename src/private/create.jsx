@@ -7,7 +7,6 @@ import PrivateNavbar from '../privateComponents/privateNavbar';
 const url = "http://127.0.0.1:8000/create_post/";
 const Create = () => {
     const {login, setLogin} = useContext(authContext);
-    console.log('in the create', login);
     let navigate = useNavigate();
     const ref_title = useRef();
     const ref_price = useRef();
