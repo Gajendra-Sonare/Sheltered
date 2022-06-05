@@ -44,9 +44,9 @@ const Login = () => {
             username : username,
             password : password
         }).then(res =>{
-            console.log('returned value after login', res.data);
             setLogin(true); 
-            res.data === 'success'? StoreToken(res,login, setLogin, navigate):alert("authentication failed");
+            console.log("returned data", res.data);
+            res.status === 200? StoreToken(res,login, setLogin, navigate):alert("authentication failed");
         })
     }
 
