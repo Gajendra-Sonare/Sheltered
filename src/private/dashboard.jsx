@@ -6,7 +6,6 @@ import CheckLoginStatus from '../utils/check-login-status';
 
 const Dashboard = () => {
     const {login, setLogin} = useContext(authContext);
-    console.log('login in dashboard',login);
     let navigate = useNavigate();
     return (
         <div>

@@ -21,7 +21,6 @@ const Login = () => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const {login, setLogin} = useContext(authContext); 
-    console.log('login context in the Login.jsx', login);
     let navigate = useNavigate();
     
     useEffect(() => {
@@ -46,7 +45,6 @@ const Login = () => {
             password : password
         }).then(res =>{
             
-            console.log("returned data here", res.data);
             res.status === 200? StoreToken(res,login, setLogin, navigate):alert("authentication failed");
         })
     }
@@ -58,7 +56,7 @@ const Login = () => {
             axios.post(url, {
                 token: token,
             }).then(res => {
-                if(res.data === "Valid"){
+                if(res.status === 200){
                     setLogin(true);
                     navigate('/dashboard');
                 
