@@ -11,6 +11,7 @@ import authContext from './utils/auth-context';
 import Create from "./private/create";
 import MyPost from "./private/mypost";
 import CheckLoginStatus from "./utils/check-login-status";
+import NavBar from "./components/Navbar";
 
 function App(){
   const temp = useContext(authContext);

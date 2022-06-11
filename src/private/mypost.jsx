@@ -8,24 +8,24 @@ import PrivateNavbar from '../privateComponents/privateNavbar';
 function showContent(info){
     console.log('info', info);
 
-        let temp = ["http://127.0.0.1:8000/media/post_image/IMG-20220429-WA0011.jpg", "http://127.0.0.1:8000/media/post_image/android-chrome-192x192_5nS20k8.png"];
         let url = "http://127.0.0.1:8000"
 
         return(
-            <div>
+            <ol>
                 {info.map( post =>
-                    <div>
-                        <h1>{"post id: "+ post[0]}</h1>
-                        <h1>{"title: " + post[1]}</h1>
-                        <h1>{"price: " + post[2]}</h1>
-                        <h1>{"description: " + post[3]}</h1>
-                        <img width={200} height={200} src={url + post[4]}/>
-                        { post[5] ? <img width={200} height={200} src={url + post[5]}/> : console.log(0)}
-                        { post[6] ? <img width={200} height={200} src={url + post[6]}/> : console.log(0)}
-                        { post[7] ? <img width={200} height={200} src={url + post[7]}/> : console.log(0)}
-                    </div>
+                    <li>
+                        <div><h3>{"title: " + post[1]} </h3> </div> 
+                        <div>{"post id: "+ post[0]}</div>
+                        
+                        <div>{"price: " + post[2]}</div>
+                        <div>{"description: " + post[3]}</div>
+                        <img width={200} height={200} src={url + post[4]} alt = ""/>
+                        { post[5] ? <img width={400} height={400} src={url + post[5]} alt = ""/> : console.log(0)}
+                        { post[6] ? <img width={400} height={400} src={url + post[6]} alt = ""/> : console.log(0)}
+                        { post[7] ? <img width={400} height={400} src={url + post[7]} alt = ""/> : console.log(0)}
+                    </li>
                 )}
-            </div>
+            </ol>
         )
     }
 
@@ -53,7 +53,6 @@ const MyPost = () =>{
     return (
         <div>
             <PrivateNavbar/>
-            {/* <button onClick={submit}>submit</button> */}
             {useEffect(()=>{
                 submit();
             }, [])}

@@ -6,7 +6,6 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import authContext from '../utils/auth-context';
 import { useContext } from 'react';
 
-
 const url = "http://127.0.0.1:8000/";
 function StoreToken(res, login, setLogin, navigate){
         setLogin(true); 

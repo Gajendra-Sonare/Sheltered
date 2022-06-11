@@ -1,8 +1,10 @@
 import React from "react";
-
 class PrivateNavbar extends React.Component {
+  
   render() {
+
     return (
+
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
@@ -24,8 +26,10 @@ class PrivateNavbar extends React.Component {
               <li className="nav-item">
                 <a className="nav-link" href="#">empty</a>
               </li>
+              
             </ul>
           </div>
+              
         </div>
       </nav>
       </div>
