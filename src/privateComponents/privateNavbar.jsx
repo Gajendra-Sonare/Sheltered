@@ -18,13 +18,13 @@ class PrivateNavbar extends React.Component {
                 <a className="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Features</a>
+                <a className="nav-link" href="/create">Create</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Pricing</a>
+                <a className="nav-link" href="/mypost">My posts</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">empty</a>
+                <a className="nav-link" href="/logout">Logout</a>
               </li>
               
             </ul>

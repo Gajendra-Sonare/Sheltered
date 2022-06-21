@@ -12,6 +12,8 @@ import Create from "./private/create";
 import MyPost from "./private/mypost";
 import CheckLoginStatus from "./utils/check-login-status";
 import NavBar from "./components/Navbar";
+import Logout from "./utils/logout";
+import Post from "./private/post";
 
 function App(){
   const temp = useContext(authContext);
@@ -25,6 +27,10 @@ function App(){
             <Route path="create" element={<PrivateRoute> <Create/> </PrivateRoute>}/>
             <Route path="/mypost" element={<PrivateRoute> <MyPost/> </PrivateRoute>}/>
             <Route path="/check" element={<PrivateRoute> <CheckLoginStatus/> </PrivateRoute>}/>
+            <Route path="/logout" element={<PrivateRoute> <Logout /> </PrivateRoute>}/>
+            <Route path="/dashboard/post/:id" element={<PrivateRoute> <Post/> </PrivateRoute>}/>
+            
+
           </Routes>
         </authContext.Provider>
       <Routes>

@@ -69,15 +69,40 @@ const Login = () => {
         <div>
             {!login ? check(): navigate('/dashboard')} 
             <NavBar />
-            <h1>Log in</h1>
             <form>
-                <input onChange={handleUsernameChange} value={username} type="text" placeholder="Username" />
-                <input onChange={handlepasswordChange} value={password} type="password" placeholder="Password" />
-                <button onClick={handleSubmit} >submit</button>
-                
+                <h3>Sign In</h3>
+                <div className="mb-3" >
+                <label>Username</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter username"
+                        onChange={handleUsernameChange}
+                        value={username}
+                    />
+                </div>
+
+                <div className="mb-3">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Enter password"
+                        onChange={handlepasswordChange} value={password} 
+                    />
+                </div>
+
+                <div className="d-grid">
+                    <button onClick={handleSubmit} type="submit" className="btn btn-primary">
+                        Submit
+                    </button>
+                </div>
+
             </form>
             Don't have a account yet? <a href="/signup">Signup</a>
         </div>
     );
 }
+
+
 export default Login;
