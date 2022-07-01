@@ -25,7 +25,7 @@ function App(){
             <Route path="/login" element={<Login/>}/>
             <Route exact path="/dashboard" element={<PrivateRoute> <Dashboard/> </PrivateRoute>} />
             <Route path="create" element={<PrivateRoute> <Create/> </PrivateRoute>}/>
-            <Route path="/mypost" element={<PrivateRoute> <MyPost/> </PrivateRoute>}/>
+            <Route path="/mypost/:page" element={<PrivateRoute> <MyPost/> </PrivateRoute>}/>
             <Route path="/check" element={<PrivateRoute> <CheckLoginStatus/> </PrivateRoute>}/>
             <Route path="/logout" element={<PrivateRoute> <Logout /> </PrivateRoute>}/>
             <Route path="/dashboard/post/:id" element={<PrivateRoute> <Post/> </PrivateRoute>}/>

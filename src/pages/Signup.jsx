@@ -43,10 +43,47 @@ const Signup = () =>{
             <NavBar />
             <h1>Signup</h1>
             <form>
-                <input onChange={handleNameChange} value={name} type="text" placeholder="Name" />
-                <input onChange={handleUsernameChange} value={username} type="text" placeholder='Username' />
-                <input onChange={handleemailChange} value={email} type="text" placeholder='email' />
-                <input onChange={handlepasswordChange} value={password} type="password" placeholder="Password" />  
+            <div className="mb-3">
+                <label>Name</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Name"
+                    onChange={handleNameChange}
+                    value={name}
+                />
+            </div>
+
+            <div className="mb-3">
+                <label>Username</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Username"
+                    onChange={handleUsernameChange} value={username}
+                />
+            </div>
+
+            <div className="mb-3">
+                <label>Email address</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Enter email"
+                        onChange={handleemailChange} value={email}
+                    />
+            </div>
+
+            <div className="mb-3">
+                <label>Password</label>
+                <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Enter password"
+                    onChange={handlepasswordChange} value={password}
+                />
+            </div>
+
             </form>
             <button onClick={handleSubmit}>submit</button>
     

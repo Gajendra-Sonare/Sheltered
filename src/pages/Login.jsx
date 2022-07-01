@@ -43,9 +43,13 @@ const Login = () => {
             username : username,
             password : password
         }).then(res =>{
-            
             res.status === 200? StoreToken(res,login, setLogin, navigate):alert("authentication failed");
-        })
+        }).catch(err => {
+            if (err.response.status === 401) {
+            alert("authentication failed");
+           }
+        }
+        )
     }
 
     const check = () => {
@@ -60,7 +64,12 @@ const Login = () => {
                     navigate('/dashboard');
                 
                 }
-            })
+            }).catch(err => {
+                if (err.response.status === 401) {
+                    alert("authentication failed");
+                }
+            }
+            )
         }
     }
 
@@ -99,7 +108,7 @@ const Login = () => {
                 </div>
 
             </form>
-            Don't have a account yet? <a href="/signup">Signup</a>
+            Don't have an account yet? <a href="/signup">Signup</a>
         </div>
     );
 }
