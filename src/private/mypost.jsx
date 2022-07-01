@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {  useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams, Navigate } from "react-router-dom";
 import authContext from "../utils/auth-context";
 import PrivateNavbar from "../privateComponents/privateNavbar";
 import axios from "axios";
@@ -8,45 +8,47 @@ import GridList from "react-bootstrap/ListGroup";
 import Post from "./post";
 
 const url = "http://127.0.0.1:8000/mypost/";
-let page_number = 1;
 
 const MyPost = () => {
-    // let { page } = useParams();
-    
-  let x = -1;
-  const { login, setLogin } = useContext(authContext);
-  const [posts, setPosts] = useState([]);
-  let navigate = useNavigate();
+    let { page } = useParams();
+    const { login, setLogin } = useContext(authContext);
+    const [posts, setPosts] = useState([]);
+    let navigate = useNavigate();
+  
   const handleNext = (e) => {
-    e.preventDefault();
-    if(posts.length === 4){
-      page_number += 1;
-      getAllPosts(setPosts, page_number);
+    if(posts.length === 4){ 
+        page = parseInt(page) + 1;
+        console.log(page);
+        navigate("/mypost/"+page);
     }else{
       alert("You have reached the end of the list");
     }
-    
   };
 
   const handlePrv = (e) => {
+
     e.preventDefault();
-    if(page_number > 1){
-      page_number -= 1;
-      getAllPosts(setPosts, page_number);
+    if(page > 1){
+        page = parseInt(page) - 1;
+        console.log(page);
+        navigate("/mypost/"+page);
     }
   }
 
-  const getAllPosts = (setPosts, page_number) => {
+  const getAllPosts = (setPosts) => {
     const token = localStorage.getItem("access");
     axios
       .post(url, {
         token : token,
-        page: page_number,
+        page: page,
       })
       .then((res) => {
         if (res.status === 200) {
           if(res.data.length === 0){
             alert('no more posts');
+            page = parseInt(page) - 1;
+            navigate("/mypost/"+page);
+            
           }else{
             setPosts(res.data);
           }
@@ -104,17 +106,17 @@ const MyPost = () => {
   return (
     <div>
       <PrivateNavbar />
-      {/* {!login ? CheckLoginStatus() : console.log('welcome')}
-      {login ? console.log(1) : <Navigate to="/login" />} */}
       {useEffect(() => {
-        getAllPosts(setPosts, page_number);
-      }, [])}
+        getAllPosts(setPosts);
+      }, [page])}
       {showImages(posts)}
-      <button style={{"margin":"10px"}} type="submit" onClick={handlePrv}> previous</button>
-      <button style={{"margin":"10px"}} type="submit"  onClick={handleNext}> Next </button>
-      
+      {page > 1 ? <button style={{"margin":"20px"}} onClick={handlePrv} className="btn btn-primary">Previous</button> : null}
+      {posts.length === 4 ? <button onClick={handleNext} className="btn btn-primary">Next</button> : null}
+      {(posts.length === 0) && <div style={{"textAlign":"center"}}>No posts</div>}
+
     </div>
   );
 };
 
 export default MyPost;
+
