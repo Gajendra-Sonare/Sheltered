@@ -52,6 +52,15 @@ const Login = () => {
         )
     }
 
+    const getNewToken = () => {
+        axios.post(url+"getnewtoken/",{
+            refresh : localStorage.getItem('refresh')
+        }).then(res =>{
+            //StoreToken(res,login, setLogin, navigate)
+            res.status === 200? StoreToken(res,login, setLogin, navigate):alert("authentication failed");
+        }
+        )}
+
     const check = () => {
         const token = localStorage.getItem('access'); 
         if(token){
@@ -66,7 +75,14 @@ const Login = () => {
                 }
             }).catch(err => {
                 if (err.response.status === 401) {
-                    alert("authentication failed");
+                    if(err.response.data === "signature expired"){
+                        alert("signature expired");
+                        getNewToken();
+                    }else{
+                        localStorage.removeItem('access');
+                        localStorage.removeItem('refresh');
+                        setLogin(false);
+                    }
                 }
             }
             )
@@ -76,7 +92,7 @@ const Login = () => {
     return (
         
         <div>
-            {!login ? check(): navigate('/dashboard')} 
+            {useEffect(() => {!login ? check(): navigate('/dashboard')} , [login])}
             <NavBar />
             <form>
                 <h3>Sign In</h3>

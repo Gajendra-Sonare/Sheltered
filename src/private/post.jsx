@@ -1,32 +1,27 @@
 import axios from "axios";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
-import Card from "react-bootstrap/Card";
-import GridList from "react-bootstrap/ListGroup";
-import SlideShow from 'react-slideshow-ui';
-import { Zoom, Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css'
-
 const url = "http://127.0.0.1:8000/post/";
 const images = [];
 
 const Post = () => {
+    // get params 
     let { id } = useParams();
-    console.log(id);
-    const [post, setPost] = useState([]);
-    const [show, setShow] = useState(false);
+    //get params 
+    const [show, setShow] = useState(false); 
+    const [selectedImage, setSelectedImage] = useState(null);
     const getPost = () => {
         axios.post(url, {
             post_id: id,
             token: localStorage.getItem("access"),
         }).then((res) => {
             if (res.status === 200) {
-                setPost(res.data);
                 setShow(true);
                 images.push("http://127.0.0.1:8000"+res.data['image']);
                 if(res.data['other_image1']) images.push("http://127.0.0.1:8000"+res.data['other_image1']);
                 if(res.data['other_image2']) images.push("http://127.0.0.1:8000"+res.data['other_image2']);
                 if(res.data['other_image3']) images.push("http://127.0.0.1:8000"+res.data['other_image3']);
+                setSelectedImage(images[0]);
                 console.log(images);
             } else {
                 alert("error");
@@ -34,57 +29,34 @@ const Post = () => {
         }
         );
     }
-    const slideRef = useRef();
-    const properties = {
-        duration: 5000,
-        autoplay: false,
-        transitionDuration: 500,
-        arrows: false,
-        infinite: true,
-        easing: "ease",
-        indicators: (i) => <div className="indicator">{i + 1}</div>
-      };
-      const back = () =>  {
-        slideRef.current.goBack();
-      }
-    
-      const next = () => {
-        slideRef.current.goNext();
-      }
+    const mainpage = () => {
+        return (
+
+                <div>
+                    <img src = {selectedImage} alt = "post" style = {{width: "500px", height: "auto"}}/>
+                    <div> 
+                    {
+                        images.map((img)=>{
+                            return (
+                                <img src = {img}
+                                onClick = {() => { setSelectedImage(img) }}
+                                alt = "post" 
+                                style = {(img === selectedImage) ? {width: "100px", height: "auto", border:"5px solid red"} : {width: "100px", height: "auto"}}/>
+                            )
+                        })
+                    }
+                    </div>
+                </div>
+            )
+    }
     
     return (
         <div>
-        {useEffect(() => {
-            getPost();
-        }, [])}
-        {/* if show if true then render the post*/
-        show ? (
-            <div>
-                <div className="slide-container">
-                <Slide {...properties} >
-                    {images.map((image) => (
-                        <div>
-                            {console.log(1)}
-                        </div>
-                    ))}
-                </Slide>
+            {useEffect(() => getPost(), [])}
 
-                <div className="slide-container buttons">
-                    <button onClick={back} type="button">
-                        Go Back
-                    </button>
-                    <button onClick={next} type="button">
-                        Go Next
-                    </button>
-                </div>
-
-                </div>
-            </div>
-      
-        ) : console.log(2)}
-        <h1>Post</h1>
+            {show ? mainpage(): <div>loading</div>}
         </div>
-    );
+        );
 }
 
 export default Post;

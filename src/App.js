@@ -29,7 +29,7 @@ function App(){
             <Route exact path="/mypost/:page" element={<PrivateRoute> <MyPost/> </PrivateRoute>}/>
             <Route path="/check" element={<PrivateRoute> <CheckLoginStatus/> </PrivateRoute>}/>
             <Route path="/logout" element={<PrivateRoute> <Logout /> </PrivateRoute>}/>
-            <Route path="/dashboard/post/:id" element={<PrivateRoute> <Post/> </PrivateRoute>}/>
+            <Route exact path="/dashboard/post/:id" element={<PrivateRoute> <Post/> </PrivateRoute>}/>
           
             <Route exact path="/" element={<Home/>}/> 
             <Route exact path="/signup" element={<Signup/>}/>

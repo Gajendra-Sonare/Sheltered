@@ -107,8 +107,11 @@ const Dashboard = () => {
         getAllPosts(setPosts, page_number);
       }, [])}
       {showImages(posts)}
-      <button style={{"margin":"10px"}} type="submit" onClick={handlePrv}> previous</button>
-      <button style={{"margin":"10px"}} type="submit"  onClick={handleNext}> Next </button>
+      {/* <button style={{"margin":"10px"}} type="submit" onClick={handlePrv}> previous</button>
+      <button style={{"margin":"10px"}} type="submit"  onClick={handleNext}> Next </button> */}
+      {page_number > 1 ? <button style={{"margin":"20px"}} onClick={handlePrv} className="btn btn-primary">Previous</button> : null}
+      {posts.length === 4 ? <button onClick={handleNext} className="btn btn-primary">Next</button> : null}
+      {(posts.length === 0) && <div style={{"textAlign":"center"}}>No posts</div>}
       
     </div>
   );
