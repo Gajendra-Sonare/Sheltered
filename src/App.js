@@ -15,6 +15,7 @@ import NavBar from "./components/Navbar";
 import Logout from "./utils/logout";
 import Post from "./private/post";
 import NoPageFound from "./pages/NoPageFound";
+import Search from "./privateComponents/searchfilter";
 
 function App(){
   const temp = useContext(authContext);
@@ -30,6 +31,7 @@ function App(){
             <Route path="/check" element={<PrivateRoute> <CheckLoginStatus/> </PrivateRoute>}/>
             <Route path="/logout" element={<PrivateRoute> <Logout /> </PrivateRoute>}/>
             <Route exact path="/dashboard/post/:id" element={<PrivateRoute> <Post/> </PrivateRoute>}/>
+            <Route exact path="dashboard/search/" element={<PrivateRoute> <Search/> </PrivateRoute>}/>
           
             <Route exact path="/" element={<Home/>}/> 
             <Route exact path="/signup" element={<Signup/>}/>

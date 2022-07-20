@@ -76,7 +76,6 @@ const Login = () => {
             }).catch(err => {
                 if (err.response.status === 401) {
                     if(err.response.data === "signature expired"){
-                        alert("signature expired");
                         getNewToken();
                     }else{
                         localStorage.removeItem('access');

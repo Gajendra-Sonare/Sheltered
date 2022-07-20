@@ -63,6 +63,10 @@ const MyPost = () => {
     //navigate to /dashboard/post and pass id as param
     navigate("/dashboard/post/"+id);
   };
+  const edit = (e, id) => {
+    e.preventDefault();
+    navigate("/dashboard/post/"+id+"/?edit=true");
+  }
 
 
   const showImages = (posts) => {
@@ -92,6 +96,10 @@ const MyPost = () => {
               <button onClick={(e) => getPost(e, post[1])} className="btn btn-primary" >
                   View Post
                 </button>
+                {/* create a button of red colour */}
+                <button onClick={(e) => edit(e, post[1])} className="btn btn-info" style={{margin:"20px"}}> Edit</button>
+
+                
               <Card.Text>
                 <small className="text-white-50 bg-dark float-right"> {post[5] + ' ' + post[6]} </small>
               </Card.Text>

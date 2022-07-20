@@ -6,17 +6,23 @@ import CheckLoginStatus from "../utils/check-login-status";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import GridList from "react-bootstrap/ListGroup";
-import MyPost from "./mypost";
-import Post from "./post";
 
 const url = "http://127.0.0.1:8000/dashboard/";
 let page_number = 1;
 
 const Dashboard = () => {
-  let x = -1;
   const { login, setLogin } = useContext(authContext);
   const [posts, setPosts] = useState([]);
   let navigate = useNavigate();
+  const [search, setSearch] = useState("");
+  
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    setSearch(queryParams.get("search"));
+    (search) ? console.log('its true') : console.log('its false')
+  }, []);
+  
+
   const handleNext = (e) => {
     e.preventDefault();
     if(posts.length === 4){
@@ -63,7 +69,10 @@ const Dashboard = () => {
 
   const showImages = (posts) => {
     return (
-      <GridList cols={3}>
+      <GridList cols={3} 
+      key={posts.id}
+      >
+
         {posts.map((post) => (
           <Card 
             href="#"
@@ -75,6 +84,7 @@ const Dashboard = () => {
             }}
             bg="secondary"
             text="white"
+            key={post.id}
           >
             <Card.Link href={"http://localhost:3000/dashboard/post/"+post[1]}>
               <Card.Header  style={{ cursor: "pointer" }} className="text-white">
@@ -101,14 +111,13 @@ const Dashboard = () => {
   return (
     <div>
       <PrivateNavbar />
-      {!login ? CheckLoginStatus() : console.log("hello")}
-      {login ? console.log(1) : <Navigate to="/login" />}
+      {!login ? CheckLoginStatus() : null}
+      {login ? null : <Navigate to="/login" />}
       {useEffect(() => {
         getAllPosts(setPosts, page_number);
       }, [])}
       {showImages(posts)}
-      {/* <button style={{"margin":"10px"}} type="submit" onClick={handlePrv}> previous</button>
-      <button style={{"margin":"10px"}} type="submit"  onClick={handleNext}> Next </button> */}
+
       {page_number > 1 ? <button style={{"margin":"20px"}} onClick={handlePrv} className="btn btn-primary">Previous</button> : null}
       {posts.length === 4 ? <button onClick={handleNext} className="btn btn-primary">Next</button> : null}
       {(posts.length === 0) && <div style={{"textAlign":"center"}}>No posts</div>}

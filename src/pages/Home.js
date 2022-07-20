@@ -15,14 +15,14 @@ const Home = () => {
       <p>
         Following technologies is used in this project:
       </p>
-      <p>
+      <div>
         <ul>
-        <li> <strong>React</strong> - Front end of this project is developed using this Framework</li>
-        <li> <strong>Django</strong> - This is used as a backend </li>
-        <li> <strong>Postgresql</strong> - For the database</li>
+          <li> <strong>React</strong> - Front end of this project is developed using this Framework</li>
+          <li> <strong>Django</strong> - This is used as a backend </li>
+          <li> <strong>Postgresql</strong> - For the database</li>
         </ul>
 
-      </p>
+      </div>
     </div>
   );
 };

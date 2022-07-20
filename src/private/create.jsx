@@ -76,7 +76,7 @@ const Create = () => {
     }
     console.log(formdata.get("image"));
     axios.post(url, formdata).then((res) => {
-      res.status == 200 ? alert("success") : alert("error");
+      res.status == 200 ? navigate('/mypost/1') : alert("error");
     });
   };
   const Check = () => {
@@ -88,7 +88,6 @@ const Create = () => {
       setLogin(false);
       navigate("/login");
     }
-    console.log("yes token", token);
     const url = "http://127.0.0.1:8000/isvalid/";
     axios
       .post(url, {
