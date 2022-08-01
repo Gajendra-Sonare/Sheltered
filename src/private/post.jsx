@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
+import PrivateNavbar from "../privateComponents/privateNavbar";
+
 const url = "http://127.0.0.1:8000/post/";
 const images = [];
 
@@ -114,6 +116,7 @@ const Post = () => {
   } else {
     return (
       <div>
+        <PrivateNavbar />
         {showPost()}
         {edit === "true" ? (
           <button className="btn btn-danger" onClick={(e) => deletePost(e, id)}>

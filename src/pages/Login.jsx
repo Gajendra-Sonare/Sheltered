@@ -19,6 +19,7 @@ function StoreToken(res, login, setLogin, navigate){
 const Login = () => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [loading, setLoading] = React.useState(false);
     const {login, setLogin} = useContext(authContext); 
     let navigate = useNavigate();
     
@@ -37,7 +38,8 @@ const Login = () => {
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        
+        setLoading(true);
+
         axios.post(url,{
             action : 'login',
             username : username,
@@ -56,7 +58,6 @@ const Login = () => {
         axios.post(url+"getnewtoken/",{
             refresh : localStorage.getItem('refresh')
         }).then(res =>{
-            //StoreToken(res,login, setLogin, navigate)
             res.status === 200? StoreToken(res,login, setLogin, navigate):alert("authentication failed");
         }
         )}
@@ -92,6 +93,9 @@ const Login = () => {
         
         <div>
             {useEffect(() => {!login ? check(): navigate('/dashboard')} , [login])}
+            {/* {loading ? <div class="spinner-border m-5" role="status">
+            <span class="sr-only">Loading...</span>
+            </div> : null} */}
             <NavBar />
             <form>
                 <h3>Sign In</h3>
@@ -118,6 +122,7 @@ const Login = () => {
 
                 <div className="d-grid">
                     <button onClick={handleSubmit} type="submit" className="btn btn-primary">
+                        {loading ? <div><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>: null}
                         Submit
                     </button>
                 </div>
