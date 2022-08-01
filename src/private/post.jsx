@@ -43,9 +43,9 @@ const Post = () => {
 
   const showPost = () => {
     return (
-      <div style={{position: "flex", textAlign: "center", 'background-color': 'grey'}}>
-        <div style={{ position: "flex", textAlign: "center", 'background-color': 'white'}}>
-          <h3 style={{ textAlign: "center" }}>{post["title"]}</h3>
+      <div >
+        <div style={{ position: "absolute", textAlign: "left", 'background-color': 'rgb(0 0 0 / 13%)', width:'50%', top:'10%'}}>
+          {/* <h3 style={{ textAlign: "center" }}>{post["title"]}</h3> */}
           <img
             src={selectedImage}
             alt="post"
@@ -77,10 +77,18 @@ const Post = () => {
           
         </div>
 
-          <div className="bg bg-primary" style={{ position: "flex", textAlign: "center" }} >
-            <p >{post["description"]}</p>
-            <p>price : {post["price"]} Rs.</p>
+          <div style={{ position: "absolute", textAlign: "top", width:'50%', left:'52%',  top:'10%', 'background-color': 'rgb(0 0 0 / 13%)'}} >
+            
+            <h1>₹ {post["price"]} </h1>
+            <h4>{post["title"]}</h4>
+            <small>{post["landmark"] + " " + post["street"] + " " + post["pincode"]}</small>
           </div>
+        
+        <div style={{position: "absolute", top:'60%', width:'50%', 'background-color': 'rgb(0 0 0/13%)'}}>
+          <h3>details</h3>
+          <p>{post["description"]}</p>
+        </div>
+
       </div>
     );
   };
