@@ -58,7 +58,7 @@ const PrivateNavbar = () => {
   
   const search = (e) => {
     e.preventDefault();
-    navigate(`/dashboard/search/?pincode=${ref_pincode.current.value}`);
+    navigate(`/dashboard/search/?pincode=${ref_pincode.current.value}`+"&page=1");
   }
 
   return (

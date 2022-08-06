@@ -49,12 +49,17 @@ const Post = () => {
           <img
             src={selectedImage}
             alt="post"
-            style={{ width: "500px", height: "auto", 'border-style': 'solid'}}
+            style={{ display: 'block',
+              'margin-left': 'auto',
+              'margin-right': 'auto', height: "250px", 'border-style': 'solid'}}
           />
-          <div>
+          <div style={{display: 'block',
+              'margin-left': 'auto',
+              'margin-right': 'auto'}}>
             {images.map((img) => {
               return (
                 <img
+                
                   src={img}
                   onClick={() => {
                     setSelectedImage(img);
@@ -67,6 +72,7 @@ const Post = () => {
                           width: "100px",
                           height: "auto",
                           border: "5px solid red",
+                           
                         }
                       : { width: "100px", height: "auto", 'border-style': 'double'}
                   }
@@ -77,12 +83,19 @@ const Post = () => {
           
         </div>
 
-          <div style={{ position: "absolute", textAlign: "top", width:'50%', left:'52%',  top:'10%', 'background-color': 'rgb(0 0 0 / 13%)'}} >
+          <div style={{ position: "absolute", textAlign: "top", width:'50%', left:'52%', height: "250px", top:'10%', 'background-color': 'rgb(0 0 0 / 13%)'}} >
             
             <h1>₹ {post["price"]} </h1>
             <h4>{post["title"]}</h4>
             <small>{post["landmark"] + " " + post["street"] + " " + post["pincode"]}</small>
+            
           </div>
+
+            <div style={{ position: "absolute", textAlign: "left", width:'50%', left:'52%',  top:'60%', 'background-color': 'rgb(0 0 0 / 13%)'}} >
+            <h4>Dealer</h4>
+            <p>name : {post["user_details"]["name"]}</p>
+            <p>mobile : {post["user_details"]["mobile"]}</p>
+            </div>
         
         <div style={{position: "absolute", top:'60%', width:'50%', 'background-color': 'rgb(0 0 0/13%)'}}>
           <h3>details</h3>
@@ -127,7 +140,7 @@ const Post = () => {
         <PrivateNavbar />
         {showPost()}
         {edit === "true" ? (
-          <button className="btn btn-danger" onClick={(e) => deletePost(e, id)}>
+          <button style={{position:'absolute', bottom:'8%'}} className="btn btn-danger" onClick={(e) => deletePost(e, id)}>
             delete
           </button>
         ) : null}

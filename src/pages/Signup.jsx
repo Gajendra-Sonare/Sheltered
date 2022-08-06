@@ -9,6 +9,7 @@ const Signup = () =>{
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [email, setEmail] = React.useState('');
+    const [number, setNumber] = React.useState('');
     let navigate = useNavigate();
     const handleNameChange = (event) =>{
         setName(event.target.value);
@@ -22,6 +23,9 @@ const Signup = () =>{
     const handleemailChange = (event) =>{
         setEmail(event.target.value);
     }
+    const handleNumberChange = (event) =>{
+        setNumber(event.target.value);
+    }
     const handleSubmit = (event) =>{
         event.preventDefault();
         axios.post(url,{
@@ -30,6 +34,7 @@ const Signup = () =>{
             name : name,
             password : password,
             email: email,
+            mobile : number,
         }).then(res =>{
             console.log(res.data);
             alert(res.data);
@@ -64,6 +69,16 @@ const Signup = () =>{
                 />
             </div>
 
+            <div className="mb-3"> 
+                <label> Mobile Number </label>
+                <input
+                    type="number"
+                    className="form-control"
+                    placeholder="Enter mobile number"
+                    onChange={handleNumberChange} value={number}
+                />
+            </div>
+
             <div className="mb-3">
                 <label>Email address</label>
                     <input
@@ -85,7 +100,7 @@ const Signup = () =>{
             </div>
 
             </form>
-            <button onClick={handleSubmit}>submit</button>
+            <button onClick={handleSubmit}>submit</button>  
     
         </div>
     );

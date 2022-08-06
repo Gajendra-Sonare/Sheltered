@@ -6,18 +6,6 @@ import PrivateNavbar from "../privateComponents/privateNavbar";
 
 const url = "http://127.0.0.1:8000/create_post/";
 
-{
-  /* <div className="mb-3">
-<label>description</label>
-<input style={{"height":"100px"}}
-  type="text"
-  className="form-control"
-  placeholder="Description"
-  ref={ref_desc}
-/>
-</div> */
-}
-
 const Create = () => {
   const { login, setLogin } = useContext(authContext);
   let navigate = useNavigate();
@@ -63,14 +51,14 @@ const Create = () => {
     if (ref_other_image2.current.value !== "") {
       formdata.append(
         "other_image2",
-        ref_other_image1.current.files[0],
+        ref_other_image2.current.files[0],
         ref_other_image2.current.files[0].name
       );
     }
     if (ref_other_image3.current.value !== "") {
       formdata.append(
         "other_image3",
-        ref_other_image1.current.files[0],
+        ref_other_image3.current.files[0],
         ref_other_image3.current.files[0].name
       );
     }
@@ -175,7 +163,8 @@ const Create = () => {
           <input type="file" ref={ref_other_image2} />
           <input type="file" ref={ref_other_image3} />
         </div>
-        {/* <input type="file" ref={ref_other_image1} />
+        {/* <input type="file" ref={ref_image} />
+        <input type="file" ref={ref_other_image1} />
                 <input type="file" ref={ref_other_image2} />
                 <input type="file" ref={ref_other_image3} /> */}
       </form>
