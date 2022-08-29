@@ -2,7 +2,6 @@
 //import Home from "../pages/Home"
 
 const PrivateRoute = ({children, ...rest}) => {
-    console.log("it works bro")
-    return children
+    return children;
 }
 export default PrivateRoute;

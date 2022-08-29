@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Navigate, useNavigate, Link } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import authContext from "../utils/auth-context";
 import PrivateNavbar from "../privateComponents/privateNavbar";
 import CheckLoginStatus from "../utils/check-login-status";
@@ -19,7 +19,6 @@ const Dashboard = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     setSearch(queryParams.get("search"));
-    (search) ? console.log('its true') : console.log('its false')
   }, []);
   
 
@@ -70,13 +69,15 @@ const Dashboard = () => {
   const showImages = (posts) => {
     return (
       <GridList cols={3} 
-      key={posts.id}
+      key={posts.id} 
+      // style={{ position: "absolute", textAlign: "center"}}
       >
 
         {posts.map((post) => (
           <Card 
             href="#"
             style={{
+             
               width: "26rem",
               justifyContent: "space-between",
               margin: "2rem",

@@ -44,18 +44,17 @@ const Post = () => {
   const showPost = () => {
     return (
       <div >
-        <div style={{ position: "absolute", textAlign: "left", 'background-color': 'rgb(0 0 0 / 13%)', width:'50%', top:'10%'}}>
-          {/* <h3 style={{ textAlign: "center" }}>{post["title"]}</h3> */}
+        <div style={{ position: "absolute", textAlign: "left", 'backgroundColor': 'rgb(0 0 0 / 13%)', width:'50%', top:'10%'}}>
           <img
             src={selectedImage}
             alt="post"
             style={{ display: 'block',
-              'margin-left': 'auto',
-              'margin-right': 'auto', height: "250px", 'border-style': 'solid'}}
+            marginLeft: 'auto',
+              marginRight: 'auto', height: "250px", borderStyle: 'solid'}}
           />
           <div style={{display: 'block',
-              'margin-left': 'auto',
-              'margin-right': 'auto'}}>
+              marginLeft: 'auto',
+              marginRight: 'auto'}}>
             {images.map((img) => {
               return (
                 <img
@@ -74,7 +73,7 @@ const Post = () => {
                           border: "5px solid red",
                            
                         }
-                      : { width: "100px", height: "auto", 'border-style': 'double'}
+                      : { width: "100px", height: "auto", borderStyle: 'double'}
                   }
                 />
               );
@@ -83,7 +82,7 @@ const Post = () => {
           
         </div>
 
-          <div style={{ position: "absolute", textAlign: "top", width:'50%', left:'52%', height: "250px", top:'10%', 'background-color': 'rgb(0 0 0 / 13%)'}} >
+          <div style={{ position: "absolute", textAlign: "top", width:'50%', left:'52%', height: "250px", top:'10%', 'backgroundColor': 'rgb(0 0 0 / 13%)'}} >
             
             <h1>₹ {post["price"]} </h1>
             <h4>{post["title"]}</h4>
@@ -91,13 +90,13 @@ const Post = () => {
             
           </div>
 
-            <div style={{ position: "absolute", textAlign: "left", width:'50%', left:'52%',  top:'60%', 'background-color': 'rgb(0 0 0 / 13%)'}} >
+            <div style={{ position: "absolute", textAlign: "left", width:'50%', left:'52%',  top:'60%', 'backgroundColor': 'rgb(0 0 0 / 13%)'}} >
             <h4>Dealer</h4>
             <p>name : {post["user_details"]["name"]}</p>
             <p>mobile : {post["user_details"]["mobile"]}</p>
             </div>
         
-        <div style={{position: "absolute", top:'60%', width:'50%', 'background-color': 'rgb(0 0 0/13%)'}}>
+        <div style={{position: "absolute", top:'60%', width:'50%', 'backgroundColor': 'rgb(0 0 0/13%)'}}>
           <h3>details</h3>
           <p>{post["description"]}</p>
         </div>

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import NavBar from '../components/Navbar';
 import axios from 'axios';
-//import dashboard from '../private/dashboard';
 import { useNavigate, Navigate } from 'react-router-dom';
 import authContext from '../utils/auth-context';
 import { useContext } from 'react';
@@ -93,9 +92,6 @@ const Login = () => {
         
         <div>
             {useEffect(() => {!login ? check(): navigate('/dashboard')} , [login])}
-            {/* {loading ? <div class="spinner-border m-5" role="status">
-            <span class="sr-only">Loading...</span>
-            </div> : null} */}
             <NavBar />
             <form>
                 <h3>Sign In</h3>
@@ -122,7 +118,7 @@ const Login = () => {
 
                 <div className="d-grid">
                     <button onClick={handleSubmit} type="submit" className="btn btn-primary">
-                        {loading ? <div><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>: null}
+                        {loading ? <div><span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>: null}
                         Submit
                     </button>
                 </div>
